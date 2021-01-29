@@ -4,7 +4,7 @@
 [![](https://jitpack.io/v/AviranAbady/CookieBar2.svg)](https://jitpack.io/#AviranAbady/CookieBar2)
 [![](https://img.shields.io/bintray/dt/aviran/projects/cookiebar2)](https://bintray.com/beta/#/aviran/projects/cookiebar2?tab=statistics)
 
-
+This is a fork of AviranAbady's CookieBar2 library which allows to send colors as hexadecimal strings instead of @ColorRes
 CookieBar 2
 ===============
 CookieBar is a lightweight library for showing a brief message at the top or bottom of the screen.<br/><br/>
@@ -50,7 +50,7 @@ CookieBar.build(getactivty())
 ```kotlin
 CookieBar.build(activity)
          .setTitle(R.string.title)
-         .setTitleColor(R.color.green)
+         .setTitleColor("#FFFF00")
          .setIcon(R.drawable.icon)
          .setIconAnimation(R.animator.spin)
          .setMessage(R.string.message)
