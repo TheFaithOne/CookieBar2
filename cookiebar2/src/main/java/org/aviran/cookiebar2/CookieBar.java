@@ -238,6 +238,11 @@ public class CookieBar {
             return this;
         }
 
+        public Builder setCookieClickAction(OnCookieClickListener onCookieClickListener) {
+            params.onCookieClickListener = onCookieClickListener;
+            return this;
+        }
+
         public Builder setAction(Spanned action, OnActionClickListener onActionClickListener) {
             params.actionHtml = action;
             params.onActionClickListener = onActionClickListener;
@@ -361,6 +366,7 @@ public class CookieBar {
         public int animationOutBottom = R.anim.slide_out_to_bottom;
         public CustomViewInitializer viewInitializer;
         public OnActionClickListener onActionClickListener;
+        public OnCookieClickListener onCookieClickListener;
         public AnimatorSet iconAnimator;
         public CookieBarDismissListener dismissListener;
     }
