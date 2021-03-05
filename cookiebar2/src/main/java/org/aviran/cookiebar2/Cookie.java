@@ -60,11 +60,11 @@ final class Cookie extends LinearLayout implements View.OnTouchListener {
     private boolean timeOutDismiss;
     private boolean isCookieRemovalInProgress;
     private Handler handler = new Handler();
+    private OnCookieClickListener onCookieClickListener;
     private final Target target = new Target() {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
             iconImageView.setImageBitmap(bitmap);
-            layoutCookie.setVisibility(VISIBLE);
         }
 
         @Override
@@ -172,6 +172,7 @@ final class Cookie extends LinearLayout implements View.OnTouchListener {
         isAutoDismissEnabled = params.enableAutoDismiss;
         dismissListener = params.dismissListener;
         final OnActionClickListener actionClickListener = params.onActionClickListener;
+        onCookieClickListener = params.onCookieClickListener;
 
         if (params.iconResId != 0 && iconImageView != null) {
             iconImageView.setVisibility(VISIBLE);
@@ -420,6 +421,9 @@ final class Cookie extends LinearLayout implements View.OnTouchListener {
 
             case MotionEvent.ACTION_UP:
                 if (!swipedOut) {
+                    if (onCookieClickListener != null) {
+                        onCookieClickListener.onClick();
+                    }
                     view.animate()
                             .x(0)
                             .alpha(1)
