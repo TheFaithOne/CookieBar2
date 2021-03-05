@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_layout.*
 import org.aviran.cookiebar2.CookieBar
@@ -21,8 +20,8 @@ class MainFragment : Fragment() {
     var topCookieCounter = 0
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_layout, container, false)
@@ -33,95 +32,97 @@ class MainFragment : Fragment() {
 
         btnTop.setOnClickListener {
             CookieBar.build(activity)
-                    .setTitle(Html.fromHtml("<b>This is a bold text</b>"))
-                    .setTitleColor(R.color.yellow)
-                    .setMessage(getString(R.string.top_cookie_message, ++topCookieCounter))
-                    .setIcon(R.drawable.ic_android_white_48dp)
-                    .setDuration(5000)
-                    .setCookieListener { dismissType ->
-                        var desc = ""
-                        when (dismissType) {
-                            DismissType.DURATION_COMPLETE -> desc = "Cookie display duration completed"
-                            DismissType.USER_DISMISS -> desc = "Cookie dismissed by user"
-                            DismissType.USER_ACTION_CLICK -> desc = "Cookie dismissed by action click"
-                            DismissType.PROGRAMMATIC_DISMISS -> desc = "Cookie dismissed programmatically"
-                            DismissType.REPLACE_DISMISS -> desc = "Replaced by new cookie"
-                        }
-                        infoTextView.text = desc
+                .setTitle(Html.fromHtml("<b>This is a bold text</b>"))
+                .setTitleColor(R.color.yellow)
+                .setMessage(getString(R.string.top_cookie_message, ++topCookieCounter))
+                .setIcon(R.drawable.ic_android_white_48dp)
+                .setDuration(5000)
+                .setCookieListener { dismissType ->
+                    var desc = ""
+                    when (dismissType) {
+                        DismissType.DURATION_COMPLETE -> desc = "Cookie display duration completed"
+                        DismissType.USER_DISMISS -> desc = "Cookie dismissed by user"
+                        DismissType.USER_ACTION_CLICK -> desc = "Cookie dismissed by action click"
+                        DismissType.PROGRAMMATIC_DISMISS -> desc =
+                            "Cookie dismissed programmatically"
+                        DismissType.REPLACE_DISMISS -> desc = "Replaced by new cookie"
                     }
-                    .show()
+                    infoTextView.text = desc
+                }
+                .show()
         }
 
         btnBottom.setOnClickListener {
             CookieBar.build(activity)
-                    .setDuration(5000)
-                    .setTitle(Html.fromHtml("<i>Italic text lives here</i>"))
-                    .setIcon(R.mipmap.ic_launcher)
-                    .setMessage(R.string.bottom_cookie_message)
-                    .setBackgroundColor("#FF0000")
-                    .setActionColor("#FFFF00")
-                    .setTitleColor("#FFFF00")
-                    .setCookiePosition(CookieBar.BOTTOM)
-                    .setAction(R.string.cookie_action) {
-                        infoTextView.text = getString(R.string.action_engaged)
-                    }
-                    .show()
+                .setDuration(5000)
+                .setTitle(Html.fromHtml("<i>Italic text lives here</i>"))
+                .setIcon("https://hydra.bot/assets/img/d69056c.jpg")
+                .setIconPlaceholder(R.drawable.icon_placeholder_transparent)
+                .setMessage(R.string.bottom_cookie_message)
+                .setBackgroundColor("#FF0000")
+                .setActionColor("#FFFF00")
+                .setTitleColor("#FFFF00")
+                .setCookiePosition(CookieBar.BOTTOM)
+                .setAction(R.string.cookie_action) {
+                    infoTextView.text = getString(R.string.action_engaged)
+                }
+                .show()
         }
 
         btnCustomAnim.setOnClickListener {
             CookieBar.build(activity)
-                    .setTitle(R.string.custom_anim_cookie_title)
-                    .setMessage(R.string.custom_anim_cookie_message)
-                    .setIcon(R.drawable.ic_android_white_48dp)
-                    .setMessageColor(R.color.default_message_color)
-                    .setBackgroundColor(R.color.colorAccent)
-                    .setDuration(5000)
-                    .setAnimationIn(android.R.anim.slide_in_left, android.R.anim.slide_in_left)
-                    .setAnimationOut(android.R.anim.slide_out_right, android.R.anim.slide_out_right)
-                    .show()
+                .setTitle(R.string.custom_anim_cookie_title)
+                .setMessage(R.string.custom_anim_cookie_message)
+                .setIcon(R.drawable.ic_android_white_48dp)
+                .setMessageColor(R.color.default_message_color)
+                .setBackgroundColor(R.color.colorAccent)
+                .setDuration(5000)
+                .setAnimationIn(android.R.anim.slide_in_left, android.R.anim.slide_in_left)
+                .setAnimationOut(android.R.anim.slide_out_right, android.R.anim.slide_out_right)
+                .show()
         }
 
 
         btnBottomAnimated.setOnClickListener {
             CookieBar.build(activity)
-                    .setTitle(R.string.fancy_cookie_title)
-                    .setMessage(R.string.fancy_cookie_message)
-                    .setIcon(R.drawable.ic_settings_white_48dp)
-                    .setIconAnimation(R.animator.iconspin)
-                    .setTitleColor("#FFFF00")
-                    .setActionColor("#FFFFFF")
-                    .setMessageColor("#FF0000")
-                    .setBackgroundColor("#315F97")
-                    .setDuration(5000)
-                    .setCookiePosition(CookieBar.BOTTOM)
-                    .setAction("OPEN SETTINGS") {
-                        infoTextView.text = getString(R.string.action_engaged)
-                    }
-                    .show()
+                .setTitle(R.string.fancy_cookie_title)
+                .setMessage(R.string.fancy_cookie_message)
+                .setIcon(R.drawable.ic_settings_white_48dp)
+                .setIconAnimation(R.animator.iconspin)
+                .setTitleColor("#FFFF00")
+                .setActionColor("#FFFFFF")
+                .setMessageColor("#FF0000")
+                .setBackgroundColor("#315F97")
+                .setDuration(5000)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .setAction("OPEN SETTINGS") {
+                    infoTextView.text = getString(R.string.action_engaged)
+                }
+                .show()
         }
 
         btnCustomView.setOnClickListener {
             CookieBar.build(activity)
-                    .setCustomView(R.layout.custom_cookie)
-                    .setCustomViewInitializer { view ->
-                        val btnNew = view.findViewById<Button>(R.id.custom_cookie_btn_new)
-                        val btnOpen = view.findViewById<Button>(R.id.custom_cookie_btn_open)
-                        val btnSave = view.findViewById<Button>(R.id.custom_cookie_btn_save)
-                        val btnListener = View.OnClickListener { view ->
-                            val button = view as Button
-                            button.setText(R.string.clicked)
-                        }
-                        btnNew.setOnClickListener(btnListener)
-                        btnOpen.setOnClickListener(btnListener)
-                        btnSave.setOnClickListener(btnListener)
+                .setCustomView(R.layout.custom_cookie)
+                .setCustomViewInitializer { view ->
+                    val btnNew = view.findViewById<Button>(R.id.custom_cookie_btn_new)
+                    val btnOpen = view.findViewById<Button>(R.id.custom_cookie_btn_open)
+                    val btnSave = view.findViewById<Button>(R.id.custom_cookie_btn_save)
+                    val btnListener = View.OnClickListener { view ->
+                        val button = view as Button
+                        button.setText(R.string.clicked)
                     }
-                    .setAction("Close") { CookieBar.dismiss(activity) }
-                    .setTitle(R.string.custom_view_cookie_title)
-                    .setMessage(R.string.custom_view_cookie_message)
-                    .setEnableAutoDismiss(false)
-                    .setSwipeToDismiss(false)
-                    .setCookiePosition(Gravity.BOTTOM)
-                    .show()
+                    btnNew.setOnClickListener(btnListener)
+                    btnOpen.setOnClickListener(btnListener)
+                    btnSave.setOnClickListener(btnListener)
+                }
+                .setAction("Close") { CookieBar.dismiss(activity) }
+                .setTitle(R.string.custom_view_cookie_title)
+                .setMessage(R.string.custom_view_cookie_message)
+                .setEnableAutoDismiss(false)
+                .setSwipeToDismiss(false)
+                .setCookiePosition(Gravity.BOTTOM)
+                .show()
         }
 
         rootView.setOnClickListener {

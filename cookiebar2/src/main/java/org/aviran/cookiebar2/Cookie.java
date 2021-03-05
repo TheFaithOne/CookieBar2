@@ -2,6 +2,7 @@ package org.aviran.cookiebar2;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import androidx.annotation.AttrRes;
 import androidx.annotation.LayoutRes;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -24,6 +26,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
 import org.aviran.cookiebar2.CookieBarDismissListener.DismissType;
 
 final class Cookie extends LinearLayout implements View.OnTouchListener {
@@ -54,6 +60,23 @@ final class Cookie extends LinearLayout implements View.OnTouchListener {
     private boolean timeOutDismiss;
     private boolean isCookieRemovalInProgress;
     private Handler handler = new Handler();
+    private final Target target = new Target() {
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            iconImageView.setImageBitmap(bitmap);
+            layoutCookie.setVisibility(VISIBLE);
+        }
+
+        @Override
+        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+            Log.d("Asd", "e");
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+        }
+    };
 
     public Cookie(@NonNull final Context context) {
         this(context, null);
@@ -157,6 +180,15 @@ final class Cookie extends LinearLayout implements View.OnTouchListener {
                 params.iconAnimator.setTarget(iconImageView);
                 params.iconAnimator.start();
             }
+        }
+
+        if (params.iconPlaceholder != 0 && iconImageView != null) {
+            iconImageView.setImageResource(params.iconPlaceholder);
+        }
+
+        if (params.iconUrl != null && iconImageView != null) {
+            iconImageView.setVisibility(VISIBLE);
+            Picasso.get().load(params.iconUrl).into(target);
         }
 
         if (titleTextView != null && (!TextUtils.isEmpty(params.title) || !TextUtils.isEmpty(params.titleHtml))) {

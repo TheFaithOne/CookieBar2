@@ -3,18 +3,17 @@ package org.aviran.cookiebar2;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.app.Activity;
+import android.text.Spanned;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.AnimRes;
 import androidx.annotation.AnimatorRes;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.StringRes;
-
-import android.text.Spannable;
-import android.text.Spanned;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * CookieBar is a lightweight library for showing a brief message at the top or bottom of the
@@ -148,6 +147,16 @@ public class CookieBar {
             return this;
         }
 
+        public Builder setIcon(String iconUrl) {
+            params.iconUrl = iconUrl;
+            return this;
+        }
+
+        public Builder setIconPlaceholder(@DrawableRes int iconPlaceholderRes) {
+            params.iconPlaceholder = iconPlaceholderRes;
+            return this;
+        }
+
         public Builder setTitle(String title) {
             params.title = title;
             return this;
@@ -272,7 +281,6 @@ public class CookieBar {
             return this;
         }
 
-
         public Builder setCustomView(@LayoutRes int customView) {
             params.customViewResource = customView;
             return this;
@@ -334,6 +342,8 @@ public class CookieBar {
         public boolean enableSwipeToDismiss = true;
         public boolean enableAutoDismiss = true;
         public int iconResId;
+        public int iconPlaceholder;
+        public String iconUrl;
         public String backgroundColor;
         public int backgroundColorRes;
         public String titleColor;
