@@ -423,6 +423,7 @@ final class Cookie extends LinearLayout implements View.OnTouchListener {
                 if (!swipedOut) {
                     if (onCookieClickListener != null) {
                         onCookieClickListener.onClick();
+                        dismiss();
                     }
                     view.animate()
                             .x(0)
