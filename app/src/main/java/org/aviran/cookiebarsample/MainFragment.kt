@@ -1,6 +1,7 @@
 package org.aviran.cookiebarsample
 
 import android.os.Bundle
+import android.text.Html
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -32,8 +33,8 @@ class MainFragment : Fragment() {
 
         btnTop.setOnClickListener {
             CookieBar.build(activity)
-                    .setTitle(R.string.top_cookie_title)
-                    .setTitleColor(R.color.default_title_color)
+                    .setTitle(Html.fromHtml("<b>This is a bold text</b>"))
+                    .setTitleColor(R.color.yellow)
                     .setMessage(getString(R.string.top_cookie_message, ++topCookieCounter))
                     .setIcon(R.drawable.ic_android_white_48dp)
                     .setDuration(5000)
@@ -54,10 +55,10 @@ class MainFragment : Fragment() {
         btnBottom.setOnClickListener {
             CookieBar.build(activity)
                     .setDuration(5000)
-                    .setTitle(R.string.bottom_cookie_title)
+                    .setTitle(Html.fromHtml("<i>Italic text lives here</i>"))
                     .setIcon(R.mipmap.ic_launcher)
                     .setMessage(R.string.bottom_cookie_message)
-                    .setBackgroundColor(R.color.liteblue)
+                    .setBackgroundColor("#FF0000")
                     .setActionColor("#FFFF00")
                     .setTitleColor("#FFFF00")
                     .setCookiePosition(CookieBar.BOTTOM)
@@ -72,7 +73,7 @@ class MainFragment : Fragment() {
                     .setTitle(R.string.custom_anim_cookie_title)
                     .setMessage(R.string.custom_anim_cookie_message)
                     .setIcon(R.drawable.ic_android_white_48dp)
-                    .setMessageColor(R.color.white)
+                    .setMessageColor(R.color.default_message_color)
                     .setBackgroundColor(R.color.colorAccent)
                     .setDuration(5000)
                     .setAnimationIn(android.R.anim.slide_in_left, android.R.anim.slide_in_left)

@@ -159,9 +159,13 @@ final class Cookie extends LinearLayout implements View.OnTouchListener {
             }
         }
 
-        if (titleTextView != null && !TextUtils.isEmpty(params.title)) {
+        if (titleTextView != null && (!TextUtils.isEmpty(params.title) || !TextUtils.isEmpty(params.titleHtml))) {
             titleTextView.setVisibility(VISIBLE);
-            titleTextView.setText(params.title);
+            if (!TextUtils.isEmpty(params.title)) {
+                titleTextView.setText(params.title);
+            } else {
+                titleTextView.setText(params.titleHtml);
+            }
             if (params.titleColor != null) {
                 try {
                     titleTextView.setTextColor(Color.parseColor(params.titleColor));
@@ -174,9 +178,13 @@ final class Cookie extends LinearLayout implements View.OnTouchListener {
             setDefaultTextSize(titleTextView, R.attr.cookieTitleSize);
         }
 
-        if (messageTextView != null && !TextUtils.isEmpty(params.message)) {
+        if (messageTextView != null && (!TextUtils.isEmpty(params.message) || !TextUtils.isEmpty(params.messageHtml))) {
             messageTextView.setVisibility(VISIBLE);
-            messageTextView.setText(params.message);
+            if (!TextUtils.isEmpty(params.message)) {
+                messageTextView.setText(params.message);
+            } else {
+                messageTextView.setText(params.messageHtml);
+            }
             if (params.messageColor != null) {
                 try {
                     messageTextView.setTextColor(Color.parseColor(params.messageColor));
@@ -189,9 +197,13 @@ final class Cookie extends LinearLayout implements View.OnTouchListener {
             setDefaultTextSize(messageTextView, R.attr.cookieMessageSize);
         }
 
-        if (actionButton != null && !TextUtils.isEmpty(params.action) && actionClickListener != null) {
+        if (actionButton != null && (!TextUtils.isEmpty(params.action) || !TextUtils.isEmpty(params.actionHtml)) && actionClickListener != null) {
             actionButton.setVisibility(VISIBLE);
-            actionButton.setText(params.action);
+            if (!TextUtils.isEmpty(params.action)) {
+                actionButton.setText(params.action);
+            } else {
+                actionButton.setText(params.actionHtml);
+            }
             actionButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
