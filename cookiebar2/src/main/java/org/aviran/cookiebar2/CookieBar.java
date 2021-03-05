@@ -9,6 +9,9 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.StringRes;
+
+import android.text.Spannable;
+import android.text.Spanned;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,6 +158,16 @@ public class CookieBar {
             return this;
         }
 
+        public Builder setTitle(Spanned title) {
+            params.titleHtml = title;
+            return this;
+        }
+
+        public Builder setMessage(Spanned message) {
+            params.messageHtml = message;
+            return this;
+        }
+
         public Builder setMessage(String message) {
             params.message = message;
             return this;
@@ -212,6 +225,12 @@ public class CookieBar {
 
         public Builder setAction(String action, OnActionClickListener onActionClickListener) {
             params.action = action;
+            params.onActionClickListener = onActionClickListener;
+            return this;
+        }
+
+        public Builder setAction(Spanned action, OnActionClickListener onActionClickListener) {
+            params.actionHtml = action;
             params.onActionClickListener = onActionClickListener;
             return this;
         }
@@ -309,6 +328,9 @@ public class CookieBar {
         public String title;
         public String message;
         public String action;
+        public Spanned titleHtml;
+        public Spanned messageHtml;
+        public Spanned actionHtml;
         public boolean enableSwipeToDismiss = true;
         public boolean enableAutoDismiss = true;
         public int iconResId;
