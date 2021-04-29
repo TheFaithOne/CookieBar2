@@ -6,11 +6,15 @@
 
 This is a fork of AviranAbady's CookieBar2 library which allows to send colors as hexadecimal strings instead of @ColorRes
 CookieBar 2
+Main differences from the original CookieBar2 library are:
+* Add the ability to set click listener via setCookieClickAction on the whole CookieBar to perform action.
+* Setting text now accepts plain strings along with @StringRes and Spanned so html formatted text could be displayed
+* Setting colors now supports strings where hexadecimal value is expected. If parsing the color fails for some resason it will fallback to the default color
 ===============
 CookieBar is a lightweight library for showing a brief message at the top or bottom of the screen.<br/><br/>
 
 ```gradle
-implementation 'org.aviran.cookiebar2:cookiebar2:1.1.4'
+ implementation 'com.github.TheFaithOne:CookieBar2:1.1.8'
 ```
 
 ## Screenshot
@@ -53,8 +57,8 @@ CookieBar.build(activity)
          .setTitleColor("#FFFF00")
          .setIcon(R.drawable.icon)
          .setIconAnimation(R.animator.spin)
-         .setMessage(R.string.message)
-         .setAction(R.string.action_text) { 
+         .setMessage(Html.fromHtml("<b>This is <u>html</u> formatted <i>text</i></b>"))
+         .setAction("Hooray!") { 
               // Action code - Do something
          }
          .setDuration(5000) // 5 seconds
